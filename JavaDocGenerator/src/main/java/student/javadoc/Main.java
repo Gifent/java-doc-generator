@@ -21,8 +21,6 @@ public class Main {
      */
     public static void main(String[] args) throws IOException{
 
-        testClassInfo();
-
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Введите путь к проекту: ");
@@ -127,27 +125,5 @@ public class Main {
         }
     } 
 
-    public static void testClassInfo() {
-        ClassInfo calculator = new ClassInfo.Builder("Calculator")
-        .description("Выполняет математические операции")
-        .addField(new FieldInfo("result", "int", "Результат"))
-        .addMethod(new MethodInfo("add", "int", "Выводит результат", List.of("int a", "int b")))
-        .build();
-
-        System.out.println("Класс: " + calculator.getName());
-        System.out.println("Описание: " + calculator.getDescription());
-
-        for (FieldInfo field : calculator.getFields()) {
-            System.out.println("Поле: " + field.getName() + ", тип " + field.getType());
-        }
-
-        for (MethodInfo method : calculator.getMethods()) {
-            System.out.println("Метод: " + method.getName() + ", возвращает " + method.getType());
-            System.out.println("Параметры: " + method.getParameters());
-        }
-
-
-
-
-    }
+    
 }
