@@ -1,4 +1,4 @@
-package student.javadoc;
+package student.javadoc.Info;
 
 public class FieldInfo {
     private final String name;

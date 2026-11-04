@@ -1,4 +1,4 @@
-package student.javadoc;
+package student.javadoc.Info;
 
 import java.util.ArrayList;
 import java.util.List;

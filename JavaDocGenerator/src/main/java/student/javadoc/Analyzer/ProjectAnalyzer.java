@@ -1,4 +1,4 @@
-package student.javadoc;
+package student.javadoc.Analyzer;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -8,9 +8,7 @@ import java.util.stream.Stream;
 
 public class ProjectAnalyzer {
 
-    public List<Path> findJavaFiles(Path sourcePath) 
-            
-        throws IOException {
+    public List<Path> findJavaFiles(Path sourcePath) throws IOException {
             if (!Files.exists(sourcePath)) {
                 throw new IllegalArgumentException("Исходный каталог не существует: " + sourcePath);
             }

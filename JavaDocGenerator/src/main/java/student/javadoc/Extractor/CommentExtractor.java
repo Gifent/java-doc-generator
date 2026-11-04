@@ -1,4 +1,4 @@
-package student.javadoc;
+package student.javadoc.Extractor;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -9,6 +9,8 @@ import com.github.javaparser.ast.comments.JavadocComment;
 import com.github.javaparser.ast.nodeTypes.NodeWithJavadoc;
 import com.github.javaparser.javadoc.Javadoc;
 import com.github.javaparser.javadoc.JavadocBlockTag;
+
+import student.javadoc.Info.JavaDocInfo;
 
 public class CommentExtractor {
     

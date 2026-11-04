@@ -1,16 +1,24 @@
-package student.javadoc;
+package student.javadoc.Parser;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParserConfiguration;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
+
+import student.javadoc.Extractor.CommentExtractor;
+import student.javadoc.Info.ClassInfo;
+import student.javadoc.Info.FieldInfo;
+import student.javadoc.Info.JavaDocInfo;
+import student.javadoc.Info.MethodInfo;
 
 public class JavaFileParser {
 
@@ -40,7 +48,8 @@ public class JavaFileParser {
     }
 
     public List<ClassInfo> parseClasses(Path filePath) throws IOException {
-        CompilationUnit compilationUnit = StaticJavaParser.parse(filePath);
+        ParserConfiguration configuration = new ParserConfiguration().setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17);
+        CompilationUnit compilationUnit = new JavaParser(configuration).parse(filePath).getResult().orElseThrow();
 
         CommentExtractor commentExtractor = new CommentExtractor();
 

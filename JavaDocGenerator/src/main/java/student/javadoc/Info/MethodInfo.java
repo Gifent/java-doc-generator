@@ -1,4 +1,4 @@
-package student.javadoc;
+package student.javadoc.Info;
 
 import java.util.List;
 import java.util.Map;
