@@ -1,7 +1,6 @@
 D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Analyzer\ProjectAnalyzer.java
-D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Calculator.java
-D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\DocumentationFacade.java
 D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Extractor\CommentExtractor.java
+D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Facade\DocumentationFacade.java
 D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Info\ClassInfo.java
 D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Info\FieldInfo.java
 D:\МИРЭА\2 курс\1 семестр\Проектирование и архитектура\Репозиторий\JavaDocGenerator\src\main\java\student\javadoc\Info\JavaDocInfo.java

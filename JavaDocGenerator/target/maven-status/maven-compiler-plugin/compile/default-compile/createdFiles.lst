@@ -4,12 +4,11 @@ student\javadoc\Strategy\HtmlGeneretionStrategy.class
 student\javadoc\Strategy\CompactHtmlStrategy.class
 student\javadoc\Info\JavaDocInfo.class
 student\javadoc\Analyzer\ProjectAnalyzer.class
-student\javadoc\Calculator.class
 student\javadoc\Parser\JavaFileParser.class
 student\javadoc\Info\MethodInfo.class
 student\javadoc\Info\ClassInfo.class
 student\javadoc\Info\FieldInfo.class
-student\javadoc\DocumentationFacade.class
+student\javadoc\Facade\DocumentationFacade.class
 student\javadoc\Main.class
 student\javadoc\Extractor\CommentExtractor.class
 student\javadoc\Strategy\DetailedHtmlStrategy.class
