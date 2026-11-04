@@ -6,23 +6,22 @@
 
 1. Клонируйте репозиторий:
 
-'''bash 
-git clone https://github.com/Gifent/java-doc-generator
-'''
+  '''bash 
+  git clone https://github.com/Gifent/java-doc-generator
+  '''
 
 2. Перейдите в директорию проекта:
 
-'''bash
-cd JavaDocGenerator
-'''
+  '''bash
+  cd JavaDocGenerator
+  '''
 
 3. Запустите проект:
 
-'''bash
-java -jar target/java-doc-generator-1.0-SNAPSHOT.jar
-'''
+  '''bash
+  java -jar target/java-doc-generator-1.0-SNAPSHOT.jar
+  '''
 
 ## Список использованных библиотек
 
-| Библиотека | Версия |
-| [JavaParser](https://javaparser.org/) | 3.27.1 |
+- [JavaParser](https://javaparser.org/) (3.27.1)
