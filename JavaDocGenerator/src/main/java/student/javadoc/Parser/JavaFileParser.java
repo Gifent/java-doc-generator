@@ -22,31 +22,6 @@ import student.javadoc.Info.MethodInfo;
 
 public class JavaFileParser {
 
-    public void parseFile(Path filePath) throws IOException {
-        CompilationUnit compilationUnit = StaticJavaParser.parse(filePath);
-
-        System.out.println("Файл: " + filePath);
- 
-        for (var classDeclaration : compilationUnit.findAll(ClassOrInterfaceDeclaration.class)) {
-            System.out.println("Найден класс: " + classDeclaration.getNameAsString());
-
-            for (var field : classDeclaration.getFields()) {
-                System.out.println(" Поле: " + field.getVariables().get(0).getNameAsString()
-             + " | тип: " + field.getElementType());
-            }
-
-            for (var method : classDeclaration.getMethods()) {
-                System.out.println("  Метод: " + method.getNameAsString() + 
-                " возвращает: " + method.getType());
-
-                for (var parameter : method.getParameters()) {
-                    System.out.println("   Параметр: " + parameter.getNameAsString() + 
-                "| тип: " + parameter.getType());
-                }
-            }
-        }
-    }
-
     public List<ClassInfo> parseClasses(Path filePath) throws IOException {
         ParserConfiguration configuration = new ParserConfiguration().setLanguageLevel(ParserConfiguration.LanguageLevel.JAVA_17);
         CompilationUnit compilationUnit = new JavaParser(configuration).parse(filePath).getResult().orElseThrow();
