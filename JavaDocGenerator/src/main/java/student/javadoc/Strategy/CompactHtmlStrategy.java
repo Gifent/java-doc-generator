@@ -61,7 +61,6 @@ public class CompactHtmlStrategy implements HtmlGeneretionStrategy {
         html.append("<body>");
 
         html.append("<h1>").append(classInfo.getName()).append("</h1>");
-        html.append("<p>").append(classInfo.getDescription()).append("</p>");
 
         html.append("<h2>Методы</h2>");
         html.append("<ul>");
@@ -76,7 +75,6 @@ public class CompactHtmlStrategy implements HtmlGeneretionStrategy {
                 html.append("<li>").append(parameter).append("</li>");
             }
             html.append("</ul>");
-            html.append("<p>Описание возвращаемого значения: ").append(method.getReturnDescription()).append("</p>");
             html.append("</li>");
         }
         html.append("</ul>");
