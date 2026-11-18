@@ -51,8 +51,7 @@ public class DocumentationIntegrationTest {
 
         Files.writeString(sourcePath.resolve("User.java"), sourceCode);
 
-        DocumentationFacade facade = new DocumentationFacade(
-                new DetailedHtmlStrategy());
+        DocumentationFacade facade = new DocumentationFacade(new DetailedHtmlStrategy());
 
         facade.generateDocumentation(sourcePath, outputPath);
 
@@ -69,16 +68,10 @@ public class DocumentationIntegrationTest {
 
     @Test
     void shouldGenerateDocumentationForMultipleClasses() throws IOException {
-        Files.writeString(
-                sourcePath.resolve("User.java"),
-                "public class User {}");
+        Files.writeString(sourcePath.resolve("User.java"), "public class User {}");
+        Files.writeString(sourcePath.resolve("Product.java"), "public class Product {}");
 
-        Files.writeString(
-                sourcePath.resolve("Product.java"),
-                "public class Product {}");
-
-        DocumentationFacade facade = new DocumentationFacade(
-                new DetailedHtmlStrategy());
+        DocumentationFacade facade = new DocumentationFacade(new DetailedHtmlStrategy());
 
         facade.generateDocumentation(sourcePath, outputPath);
 
@@ -115,8 +108,7 @@ public class DocumentationIntegrationTest {
 
         Files.writeString(sourcePath.resolve("User.java"), sourceCode);
 
-        DocumentationFacade facade = new DocumentationFacade(
-                new CompactHtmlStrategy());
+        DocumentationFacade facade = new DocumentationFacade(new CompactHtmlStrategy());
 
         facade.generateDocumentation(sourcePath, outputPath);
 
@@ -131,22 +123,18 @@ public class DocumentationIntegrationTest {
 
     @Test
     void shouldFindJavaFilesInSubdirectories() throws IOException {
-        Path subdirectory = Files.createDirectories(
-                sourcePath.resolve("models"));
+        Path subdirectory = Files.createDirectories(sourcePath.resolve("models"));
 
         String sourceCode = """
                 /**
                  * Класс пользователя.
                  */
-                public class User {}
-                """;
+            public class User {}
+        """;
 
-        Files.writeString(
-                subdirectory.resolve("User.java"),
-                sourceCode);
+        Files.writeString(subdirectory.resolve("User.java"), sourceCode);
 
-        DocumentationFacade facade = new DocumentationFacade(
-                new DetailedHtmlStrategy());
+        DocumentationFacade facade = new DocumentationFacade(new DetailedHtmlStrategy());
 
         facade.generateDocumentation(sourcePath, outputPath);
 
@@ -160,12 +148,9 @@ public class DocumentationIntegrationTest {
 
     @Test
     void shouldThrowExceptionWhenNoJavaFilesFound() {
-        DocumentationFacade facade = new DocumentationFacade(
-                new DetailedHtmlStrategy());
+        DocumentationFacade facade = new DocumentationFacade(new DetailedHtmlStrategy());
 
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> facade.generateDocumentation(sourcePath, outputPath));
+        assertThrows(IllegalArgumentException.class, () -> facade.generateDocumentation(sourcePath, outputPath));
 
         assertFalse(Files.exists(outputPath));
     }
