@@ -14,7 +14,7 @@ import student.javadoc.Facade.DocumentationFacade;
 import student.javadoc.Strategy.CompactHtmlStrategy;
 import student.javadoc.Strategy.DetailedHtmlStrategy;
 
-public class DocumentationIntegrationTest {
+public class DetailedDocumentationIntegrationTest {
 
     @TempDir
     Path tempDir;
@@ -83,42 +83,6 @@ public class DocumentationIntegrationTest {
 
         assertTrue(indexHtml.contains("User"));
         assertTrue(indexHtml.contains("Product"));
-    }
-
-    @Test
-    void shouldGenerateCompactDocumentation() throws IOException {
-        String sourceCode = """
-                /**
-                 * Класс пользователя.
-                 */
-                public class User {
-
-                    /** Имя пользователя. */
-                    private String name;
-
-                    /**
-                     * Возвращает имя пользователя.
-                     * @return имя пользователя
-                     */
-                    public String getName() {
-                        return name;
-                    }
-                }
-                """;
-
-        Files.writeString(sourcePath.resolve("User.java"), sourceCode);
-
-        DocumentationFacade facade = new DocumentationFacade(new CompactHtmlStrategy());
-
-        facade.generateDocumentation(sourcePath, outputPath);
-
-        assertTrue(Files.exists(outputPath.resolve("index.html")));
-        assertTrue(Files.exists(outputPath.resolve("User.html")));
-
-        String html = Files.readString(outputPath.resolve("User.html"));
-
-        assertFalse(html.contains("Возвращает имя пользователя."));
-        assertFalse(html.contains("Имя пользователя."));
     }
 
     @Test

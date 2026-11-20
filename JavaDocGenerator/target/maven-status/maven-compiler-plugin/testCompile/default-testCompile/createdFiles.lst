@@ -1,8 +1,0 @@
-student\javadoc\Facade\DocumentationFacadeTest$RecordingStrategy.class
-student\javadoc\Strategy\DetailedHtmlStrategyTest.class
-student\javadoc\Analyzer\ProjectAnalyzerTest.class
-student\javadoc\Facade\DocumentationFacadeTest.class
-student\javadoc\Integration\DocumentationIntegrationTest.class
-student\javadoc\Strategy\CompactHtmlStrategyTest.class
-student\javadoc\Parser\JavaFileParserTest.class
-student\javadoc\Extractor\CommentExtractorTest.class

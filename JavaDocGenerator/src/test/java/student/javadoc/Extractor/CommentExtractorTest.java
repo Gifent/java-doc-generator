@@ -21,9 +21,9 @@ public class CommentExtractorTest {
     @Test
     void shouldExtractClassComment() {
         var node = StaticJavaParser.parse("""
-            /** Описание класса. */
-            public class Example {}
-        """).getClassByName("Example").orElseThrow();
+                    /** Описание класса. */
+                    public class Example {}
+                """).getClassByName("Example").orElseThrow();
 
         var result = extractor.extractComment(node);
 
@@ -34,8 +34,8 @@ public class CommentExtractorTest {
     @Test
     void shouldReturnEmptyWhenClassHasNoComment() {
         var node = StaticJavaParser.parse("""
-            public class Example {}
-        """).getClassByName("Example").orElseThrow();
+                    public class Example {}
+                """).getClassByName("Example").orElseThrow();
 
         var result = extractor.extractComment(node);
 
@@ -45,7 +45,7 @@ public class CommentExtractorTest {
     @Test
     void shouldReturnEmptyForNodeWithoutJavadocSupport() {
         BinaryExpr node = StaticJavaParser.parseExpression("1 + 2")
-            .asBinaryExpr();
+                .asBinaryExpr();
 
         var result = extractor.extractComment(node);
 
@@ -55,12 +55,12 @@ public class CommentExtractorTest {
     @Test
     void shouldExtractMultilineComment() {
         var node = StaticJavaParser.parse("""
-            /**
-             * Первая строка.
-             * Вторая строка.
-             */
-            public class Example {}
-        """).getClassByName("Example").orElseThrow();
+                    /**
+                     * Первая строка.
+                     * Вторая строка.
+                     */
+                    public class Example {}
+                """).getClassByName("Example").orElseThrow();
 
         var result = extractor.extractComment(node);
 
@@ -72,13 +72,13 @@ public class CommentExtractorTest {
     @Test
     void shouldExtractMethodComment() {
         CompilationUnit unit = StaticJavaParser.parse("""
-            public class Example {
-                /** Возвращает имя. */
-                public String getName() {
-                    return "Alex";
-                }
-            }
-        """);
+                    public class Example {
+                        /** Возвращает имя. */
+                        public String getName() {
+                            return "Alex";
+                        }
+                    }
+                """);
 
         var method = unit.getClassByName("Example").orElseThrow().getMethodsByName("getName").get(0);
 
@@ -86,6 +86,80 @@ public class CommentExtractorTest {
 
         assertTrue(result.isPresent());
         assertEquals("Возвращает имя.", result.get().trim());
+    }
+
+    @Test
+    void shouldExtractJavadocDescription() {
+        var node = StaticJavaParser.parse("""
+                    /**
+                     * Описание класса.
+                     */
+                    public class Example {}
+                """).getClassByName("Example").orElseThrow();
+
+        var result = extractor.extractJavadoc(node);
+
+        assertEquals("Описание класса.", result.getDescription().trim());
+    }
+
+    @Test
+    void shouldExtractMultipleParameterDescriptions() {
+        var unit = StaticJavaParser.parse("""
+                    public class Example {
+                        /**
+                         * Складывает два числа.
+                         * @param a первое число
+                         * @param b второе число
+                         */
+                        public int sum(int a, int b) {
+                            return a + b;
+                        }
+                    }
+                """);
+
+        var method = unit.getClassByName("Example").orElseThrow()
+                .getMethodsByName("sum").get(0);
+
+        var result = extractor.extractJavadoc(method);
+
+        assertEquals("первое число", result.getParameterDescriptions().get("a").trim());
+        assertEquals("второе число", result.getParameterDescriptions().get("b").trim());
+        assertEquals(2, result.getParameterDescriptions().size());
+    }
+
+    @Test
+    void shouldExtractReturnDescription() {
+        var unit = StaticJavaParser.parse("""
+                    public class Example {
+                        /**
+                         * Возвращает имя.
+                         * @return имя пользователя
+                         */
+                        public String getName() {
+                            return "Alex";
+                        }
+                    }
+                """);
+
+        var method = unit.getClassByName("Example").orElseThrow()
+                .getMethodsByName("getName").get(0);
+
+        var result = extractor.extractJavadoc(method);
+
+        assertEquals("имя пользователя", result.getReturnDescription().trim());
+    }
+
+    @Test
+    void shouldReturnEmptyJavadocInfoWhenNodeHasNoComment() {
+        var node = StaticJavaParser.parse("""
+                    public class Example {}
+                """).getClassByName("Example").orElseThrow();
+
+        var result = extractor.extractJavadoc(node);
+
+        assertEquals("", result.getDescription());
+        assertTrue(result.getParameterDescriptions().isEmpty());
+        assertEquals("", result.getReturnDescription());
     }
 
 }
