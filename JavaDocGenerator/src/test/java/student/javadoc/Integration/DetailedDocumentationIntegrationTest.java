@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import student.javadoc.Facade.DocumentationFacade;
-import student.javadoc.Strategy.CompactHtmlStrategy;
 import student.javadoc.Strategy.DetailedHtmlStrategy;
 
 public class DetailedDocumentationIntegrationTest {
